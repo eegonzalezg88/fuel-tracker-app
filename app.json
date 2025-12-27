@@ -1,0 +1,23 @@
+{
+  "expo": {
+    "name": "Fuel Tracker",
+    "slug": "fuel-tracker-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "platforms": ["ios", "android", "web"],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fueltracker.app"
+    },
+    "android": {
+      "package": "com.fueltracker.app",
+      "adaptiveIcon": {
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "plugins": [
+      "expo-asset"
+    ]
+  }
+}
