@@ -4,22 +4,16 @@
   "devCommand": "expo start --web",
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
+      "source": "/api/records/:id",
+      "destination": "/api/records/[id].ts"
+    },
+    {
+      "source": "/api/records",
+      "destination": "/api/records.ts"
     },
     {
       "source": "/(.*)",
       "destination": "/index.html"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/records/([^/]+)",
-      "dest": "/api/records/[id].ts"
-    },
-    {
-      "src": "/api/records",
-      "dest": "/api/records.ts"
     }
   ],
   "functions": {
