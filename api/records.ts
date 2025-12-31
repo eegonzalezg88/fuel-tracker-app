@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { getAllRecords, addRecord } from '../lib/sheetsService';
+import { getAllRecords, addRecord } from './lib/sheetsService';
 
 export default async function handler(
   req: VercelRequest,
