@@ -1,15 +1,30 @@
 {
-  "version": 2,
-  "builds": [
+  "buildCommand": "expo export --platform web",
+  "outputDirectory": "dist",
+  "devCommand": "expo start --web",
+  "rewrites": [
     {
-      "src": "api/**/*.ts",
-      "use": "@vercel/node"
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "src": "/api/records/([^/]+)",
+      "dest": "/api/records/[id].ts"
+    },
+    {
+      "src": "/api/records",
+      "dest": "/api/records.ts"
     }
-  ]
+  ],
+  "functions": {
+    "api/**/*.ts": {
+      "runtime": "@vercel/node@3.0.0"
+    }
+  }
 }
