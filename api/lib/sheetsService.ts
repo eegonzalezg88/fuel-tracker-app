@@ -19,12 +19,24 @@ interface SheetRecord {
 
 let cachedDoc: GoogleSpreadsheet | null = null;
 
+// Helper function to normalize the private key format
+function normalizePrivateKey(key: string): string {
+  // If the key contains literal \n (not actual newlines), replace them
+  if (key.includes('\\n')) {
+    return key.replace(/\\n/g, '\n');
+  }
+  // Otherwise, return as-is (already has actual newlines)
+  return key;
+}
+
 async function getDoc(): Promise<GoogleSpreadsheet> {
   if (cachedDoc) return cachedDoc;
 
+  const privateKey = process.env.GOOGLE_PRIVATE_KEY || '';
+  
   const serviceAccountAuth = new JWT({
     email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+    key: normalizePrivateKey(privateKey),
     scopes: SCOPES,
   });
 
